@@ -1,39 +1,37 @@
 package pl.softsystem.wyklad1.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.softsystem.wyklad1.model.UserModel;
+import pl.softsystem.wyklad1.service.UserService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
 
-    private static List<UserModel> users = new ArrayList<>();
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/")
     public List<UserModel> getUsers() {
-        return users;
+        return userService.getAllUsers();
     }
 
-    @GetMapping("/{index}")
-    public UserModel getUserByIndex(@PathVariable int index) {
-        return users.get(index);
+    @GetMapping("/{id}")
+    public UserModel getUserByIndex(@PathVariable Long id) {
+        return userService.getOne(id);
     }
 
     @PostMapping("/")
     public UserModel insertNewUser(@RequestBody UserModel userModel) {
-        users.add(userModel);
-        return userModel;
+        return userService.insertNewUser(userModel);
     }
 
-    @PutMapping("/{index}")
-    public UserModel updateUser(@PathVariable int index, @RequestBody UserModel userModel) {
-        UserModel model = users.get(index);
-        model.setLogin(userModel.getLogin());
-        model.setName(userModel.getName());
-        return model;
+    @PutMapping("/{id}")
+    public UserModel updateUser(@PathVariable Long id, @RequestBody UserModel userModel) {
+        return userService.updateUserById(id, userModel);
     }
 
 }
