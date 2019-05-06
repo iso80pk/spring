@@ -14,8 +14,7 @@ public class UserModel {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_model_id_seq")
-    @SequenceGenerator(name = "user_model_id_seq", sequenceName = "user_model_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String login;

@@ -1,0 +1,1 @@
+insert into user_model (name, login) VALUES ('fanek', 'franekPass');
