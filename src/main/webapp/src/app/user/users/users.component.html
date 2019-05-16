@@ -1,0 +1,19 @@
+<div>
+  Users
+
+
+</div>
+<div>
+  <table style="width:100%" *ngIf="users">
+    <tr>
+      <th>id</th>
+      <th>name</th> 
+      <th>login</th>
+    </tr>
+    <tr *ngFor="let user of users" >
+      <td>{{user.id}}</td>
+      <td>{{user.name}}</td>
+      <td>{{user.login}}</td>
+    </tr>
+  </table>
+</div>
